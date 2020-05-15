@@ -13,10 +13,9 @@ MQTT_USER = 'smartreader'
 MQTT_PASSWORD = os.getenv('mqtt-pass')
 MQTT_TOPIC = 'IoT2020sec/meters'
 MQTT_CAPATH = './certs/ca-certificates.crt'
-gateway_url = os.getenv("gateway_url")
-function_url = gateway_url + "/function/iot-influxdb-savedata-func"
+function_url = os.getenv("gateway_url") + "/function/iot-influxdb-savedata"
 
-print("Using gateway {} and topic {}".format(gateway_url, MQTT_TOPIC))
+print("Using gateway {} and topic {}".format(os.getenv("gateway_url"), MQTT_TOPIC))
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
