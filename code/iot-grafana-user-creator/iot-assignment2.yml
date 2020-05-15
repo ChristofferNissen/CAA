@@ -1,0 +1,13 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: https://gateway.christoffernissen.me
+functions:
+  iot-user-creator-func:
+    lang: python3-armhf
+    handler: ./2_smart_meter/edge/grafana-user-creator
+    image: stifstof/iot-user-creator:latest
+    secrets:
+    environment:
+      host: ec2-34-226-215-115.compute-1.amazonaws.com:3000
+    

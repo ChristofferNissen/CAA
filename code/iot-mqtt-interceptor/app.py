@@ -13,8 +13,8 @@ MQTT_USER = 'smartreader'
 MQTT_PASSWORD = os.getenv('mqtt-pass')
 MQTT_TOPIC = 'IoT2020sec/meters'
 MQTT_CAPATH = './certs/ca-certificates.crt'
-gateway_url = os.getenv("gateway_url", "https://gateway.christoffernissen.me")
-
+gateway_url = os.getenv("gateway_url")
+function_url = gateway_url + "/function/iot-influxdb-savedata-func"
 
 print("Using gateway {} and topic {}".format(gateway_url, MQTT_TOPIC))
 
@@ -42,7 +42,7 @@ def on_message(client, userdata, msg):
 
     print(msg.topic+" "+json.dumps(r))
 
-    res = requests.post(gateway_url + "/function/iot-influxdb-savedata-func", data=r)
+    res = requests.post(function_url, data=r)
     print("Function response code", res.status_code)
 
 
